@@ -10,3 +10,5 @@ After cloning this repository run:
 git submodule update --init
 docker-compose up --build
 ```
+
+Open the application on http://localhost:3000/
