@@ -12,3 +12,5 @@ docker-compose up --build
 ```
 
 Open the application on http://localhost:3000/
+
+Default user is `admin/admin`.
