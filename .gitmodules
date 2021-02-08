@@ -1,0 +1,3 @@
+[submodule "redmine/plugins/redmine_text_blocks"]
+	path = redmine/plugins/redmine_text_blocks
+	url = https://github.com/gtt-project/redmine_text_blocks.git
