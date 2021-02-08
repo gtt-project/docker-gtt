@@ -5,7 +5,6 @@ RUN apt-get update \
         git \
         perl \
         wget \
- && git submodule update --recursive \
  && apt-get purge -y \
         git \
         perl \
