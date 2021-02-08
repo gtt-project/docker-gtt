@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  gtt:
+    image: redmine:4.1
+    ports:
+      - 3000:3000
+    environment:
+      REDMINE_DB_POSTGRES: postgres
+      REDMINE_DB_USERNAME: gtt
+      REDMINE_DB_PASSWORD: gtt
+      REDMINE_DB_DATABASE: gtt
+    volumes:
+      - ./redmine/files:/usr/src/redmine/files
+      - ./redmine/log:/usr/src/redmine/log
+      - ./redmine/plugins:/usr/src/redmine/plugins
+      - ./redmine/public/themes:/usr/src/redmine/public/themes
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: mdillon/postgis:11-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_ROOT_PASSWORD: postgres
+      POSTGRES_USER: gtt
+      POSTGRES_PASSWORD: gtt
+      POSTGRES_DATABASE: gtt
+    volumes:
+      - ./postgres/pgsql-data:/var/lib/postgresql/data
+      - ./postgres/initdb:/docker-entrypoint-initdb.d
+    restart: on-failure
+
+volumes:
+  gtt:
+  postgres:
