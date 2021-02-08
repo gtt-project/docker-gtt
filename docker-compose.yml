@@ -13,6 +13,7 @@ services:
       REDMINE_DB_USERNAME: gtt
       REDMINE_DB_PASSWORD: gtt
       REDMINE_DB_DATABASE: gtt
+      REDMINE_PLUGINS_MIGRATE: 1
     volumes:
       - ./redmine/files:/usr/src/redmine/files
       - ./redmine/log:/usr/src/redmine/log
