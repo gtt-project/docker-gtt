@@ -1,4 +1,7 @@
-version: "3"
+version: "3.4"
+
+x-var: &GEM_PG_VERSION
+  1.1.4
 
 services:
 
@@ -6,6 +9,10 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
+      args:
+        REDMINE_VERSION: 4.0.7
+        REDMICA_VERSION: ""
+        GEM_PG_VERSION: *GEM_PG_VERSION
     ports:
       - 3000:3000
     environment:
@@ -14,11 +21,11 @@ services:
       REDMINE_DB_PASSWORD: gtt
       REDMINE_DB_DATABASE: gtt
       REDMINE_PLUGINS_MIGRATE: 1
+      GEM_PG_VERSION: *GEM_PG_VERSION
     volumes:
-      - ./redmine/files:/usr/src/redmine/files
-      - ./redmine/log:/usr/src/redmine/log
-      - ./redmine/plugins:/usr/src/redmine/plugins
-      - ./redmine/public/themes:/usr/src/redmine/public/themes
+      - ./files:/usr/src/redmine/files
+      - ./plugins:/usr/src/redmine/plugins
+      - ./public/themes:/usr/src/redmine/public/themes
     depends_on:
       - postgres
     restart: always
@@ -32,7 +39,7 @@ services:
       POSTGRES_PASSWORD: gtt
       POSTGRES_DB: gtt
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     restart: on-failure
 
 volumes:
