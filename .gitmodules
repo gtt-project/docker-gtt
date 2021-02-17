@@ -1,3 +1,6 @@
 [submodule "redmine/plugins/redmine_text_blocks"]
 	path = plugins/redmine_text_blocks
 	url = https://github.com/gtt-project/redmine_text_blocks.git
+[submodule "plugins/redmine_gtt"]
+	path = plugins/redmine_gtt
+	url = https://github.com/gtt-project/redmine_gtt.git

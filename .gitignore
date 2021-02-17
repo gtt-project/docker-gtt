@@ -1,3 +1,9 @@
 # Volume mounts
-postgres
-redmine
+files
+
+# Editor
+*.code-workspace
+
+# macOS
+.DS_Store
+

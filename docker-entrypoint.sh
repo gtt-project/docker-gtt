@@ -67,7 +67,8 @@ if [ -n "$isLikelyRedmine" ]; then
 			file_env 'REDMINE_DB_DATABASE' "${MYSQL_ENV_MYSQL_DATABASE:-${MYSQL_ENV_MYSQL_USER:-redmine}}"
 			file_env 'REDMINE_DB_ENCODING' ''
 		elif [ "$REDMINE_DB_POSTGRES" ]; then
-			adapter='postgresql'
+			# adapter='postgresql'
+			adapter='postgis'
 			host="$REDMINE_DB_POSTGRES"
 			file_env 'REDMINE_DB_PORT' '5432'
 			file_env 'REDMINE_DB_USERNAME' "${POSTGRES_ENV_POSTGRES_USER:-postgres}"

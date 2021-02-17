@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+# each plugin's native extensions should be added to here
+gem "rgeo"
+gem "pg", (ENV['GEM_PG_VERSION'] ? "~> #{ENV['GEM_PG_VERSION']}" : "~> 1.0.0")

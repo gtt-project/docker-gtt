@@ -10,14 +10,15 @@ RUN set -eux; \
 		ca-certificates \
 		wget \
 		\
-		bzr \
-		git \
-		mercurial \
+		# bzr \
+		# git \
+		# mercurial \
 		openssh-client \
-		subversion \
+		# subversion \
 		\
 # we need "gsfonts" for generating PNGs of Gantt charts
 # and "ghostscript" for creating PDF thumbnails (in 4.1+)
+		ghostscript \
 		gsfonts \
 		imagemagick \
 	; \
@@ -77,12 +78,17 @@ RUN set -eux; \
 	chown redmine:redmine "$HOME"; \
 	chmod 1777 "$HOME"
 
-ENV REDMINE_VERSION 4.0.7
-ENV REDMINE_DOWNLOAD_MD5 baad690fdccd7f0282d53beb0ee2c47b
+ARG REDMINE_VERSION="4.0.7"
+ARG REDMICA_VERSION=""
+# ENV REDMINE_DOWNLOAD_MD5 baad690fdccd7f0282d53beb0ee2c47b
 
 RUN set -eux; \
-	wget -O redmine.tar.gz "https://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz"; \
-	echo "$REDMINE_DOWNLOAD_MD5 *redmine.tar.gz" | md5sum -c -; \
+	if [ -n "$REDMINE_VERSION" ]; then \
+		wget -O redmine.tar.gz "https://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz"; \
+		# echo "$REDMINE_DOWNLOAD_MD5 *redmine.tar.gz" | md5sum -c -;
+	elif [ -n "$REDMICA_VERSION" ]; then \
+		wget -O redmine.tar.gz "https://github.com/redmica/redmica/archive/v${REDMICA_VERSION}.tar.gz"; \
+	fi; \
 	tar -xf redmine.tar.gz --strip-components=1; \
 	rm redmine.tar.gz files/delete.me log/delete.me; \
 	mkdir -p log public/plugin_assets sqlite tmp/pdf tmp/pids; \
@@ -93,25 +99,34 @@ RUN set -eux; \
 	chmod -R ugo=rwX config db sqlite; \
 	find log tmp -type d -exec chmod 1777 '{}' +
 
+# for GTT gem native extensions
+ARG GEM_PG_VERSION="1.1.4"
+COPY Gemfile.local ./
+
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		freetds-dev \
+		# freetds-dev \
 		gcc \
-		libmariadbclient-dev \
+		# libmariadbclient-dev \
 		libpq-dev \
-		libsqlite3-dev \
+		# libsqlite3-dev \
 		make \
 		patch \
 # in 4.1+, libmagickcore-dev and libmagickwand-dev are no longer necessary/used: https://www.redmine.org/issues/30492
 		libmagickcore-dev libmagickwand-dev \
+# for GTT dependencies
+		g++ \
+		libgeos-dev \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
+	export GEM_PG_VERSION="$GEM_PG_VERSION"; \
 	gosu redmine bundle install --jobs "$(nproc)" --without development test; \
-	for adapter in mysql2 postgresql sqlserver sqlite3; do \
+	# for adapter in mysql2 postgresql sqlserver sqlite3; do \
+	for adapter in postgis; do \
 		echo "$RAILS_ENV:" > ./config/database.yml; \
 		echo "  adapter: $adapter" >> ./config/database.yml; \
 		gosu redmine bundle install --jobs "$(nproc)" --without development test; \
