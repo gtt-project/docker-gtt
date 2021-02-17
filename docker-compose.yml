@@ -15,10 +15,9 @@ services:
       REDMINE_DB_DATABASE: gtt
       REDMINE_PLUGINS_MIGRATE: 1
     volumes:
-      - ./redmine/files:/usr/src/redmine/files
-      - ./redmine/log:/usr/src/redmine/log
-      - ./redmine/plugins:/usr/src/redmine/plugins
-      - ./redmine/public/themes:/usr/src/redmine/public/themes
+      - ./files:/usr/src/redmine/files
+      - ./plugins:/usr/src/redmine/plugins
+      - ./public/themes:/usr/src/redmine/public/themes
     depends_on:
       - postgres
     restart: always
@@ -32,7 +31,7 @@ services:
       POSTGRES_PASSWORD: gtt
       POSTGRES_DB: gtt
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     restart: on-failure
 
 volumes:
