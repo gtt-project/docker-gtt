@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 2021 GTT Project contributors <foss@georepublic.info>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # docker-gtt
 
 Docker image for GTT Project

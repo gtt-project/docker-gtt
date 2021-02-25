@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: gtt-project
+Upstream-Contact: Georepublic <foss@georepublic.info>
+Source: https://github.com/gtt-project/docker-gtt
+
+Files: docker-* Dockerfile README.md Gemfile.local
+Copyright: 2021 GTT Project contributors <foss@georepublic.info>
+License: GPL-3.0-or-later
+
+Files: .editorconfig .gitignore .gitmodules
+Copyright: 2021 GTT Project contributors <foss@georepublic.info>
+License: CC0-1.0
