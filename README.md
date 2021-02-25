@@ -42,9 +42,5 @@ See [all releases](https://github.com/gtt-project/docker-gtt/releases) with rele
 ## License
 
 This program is free software. See the [LICENSES](LICENSES) folder and individual files for more information.
-You can print the project's bill of materials in SPDX format with the [REUSE tool](https://reuse.software/tutorial/):
-
-```
-reuse spdx
-```
+You can print the project's bill of materials in SPDX format with the [REUSE tool](https://reuse.software/tutorial/): `reuse spdx`
 
