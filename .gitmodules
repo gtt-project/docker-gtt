@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 2021 GTT Project contributors <foss@georepublic.info>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 [submodule "plugins/redmine_text_blocks"]
 	path = plugins/redmine_text_blocks
 	url = https://github.com/gtt-project/redmine_text_blocks.git

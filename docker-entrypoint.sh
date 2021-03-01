@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2021 2021 GTT Project contributors <foss@georepublic.info>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 set -Eeo pipefail
 # TODO add "-u"
 

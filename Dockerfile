@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 2021 GTT Project contributors <foss@georepublic.info>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 FROM ruby:2.6-slim-buster
 
 # explicitly set uid/gid to guarantee that it won't change in the future
