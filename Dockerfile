@@ -99,6 +99,11 @@ RUN set -eux; \
 	chmod -R ugo=rwX config db sqlite; \
 	find log tmp -type d -exec chmod 1777 '{}' +
 
+# for Redmine patches
+ARG PATCH_STRIP=1
+ARG PATCH_DIRS=""
+COPY patches/ ./patches/
+
 # for GTT gem native extensions
 ARG GEM_PG_VERSION="1.1.4"
 COPY Gemfile.local ./
@@ -123,6 +128,14 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
+	if [ -n "$PATCH_DIRS" ]; then \
+		for dir in $(echo $PATCH_DIRS | sed "s/,/ /g"); do \
+			for file in ./patches/"$dir"/*; do \
+				patch -p"$PATCH_STRIP" < $file; \
+			done; \
+		done; \
+		rm -rf ./patches/*; \
+	fi; \
 	export GEM_PG_VERSION="$GEM_PG_VERSION"; \
 	gosu redmine bundle install --jobs "$(nproc)" --without development test; \
 	# for adapter in mysql2 postgresql sqlserver sqlite3; do \
