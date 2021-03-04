@@ -7,3 +7,6 @@
 [submodule "plugins/redmine_gtt_smash"]
 	path = plugins/redmine_gtt_smash
 	url = https://github.com/gtt-project/redmine_gtt_smash.git
+[submodule "public/themes/hyakumori"]
+	path = public/themes/hyakumori
+	url = https://github.com/hyakumori/redmine_theme_hyakumori.git
