@@ -10,3 +10,7 @@
 [submodule "public/themes/hyakumori"]
 	path = public/themes/hyakumori
 	url = https://github.com/hyakumori/redmine_theme_hyakumori.git
+[submodule "public/themes/hyakumori_blueclair"]
+	path = public/themes/hyakumori_blueclair
+	url = https://github.com/hyakumori/redmine_theme_farend_bleuclair.git
+	branch = hyakumori
