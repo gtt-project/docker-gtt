@@ -3,6 +3,7 @@ files
 
 # Editor
 *.code-workspace
+.idea/
 
 # macOS
 .DS_Store
