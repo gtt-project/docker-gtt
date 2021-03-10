@@ -1,0 +1,76 @@
+throwErrorOnExtraParameters: false
+transparentTileErrorColor: "rgba(78, 78, 255, 125)"
+opaqueTileErrorColor: "rgba(255, 155, 155, 0)"
+
+pdfConfig: !pdfConfig
+  author: "GTT"
+  subject: "GTT Print"
+
+templates:
+  default: !template
+    reportTemplate: default.jrxml
+    attributes:
+      id: !string
+        default: ""
+      subject: !string
+        default: ""
+      project_id: !string
+        default: ""
+      project_name: !string
+        default: ""
+      tracker_id: !string
+        default: ""
+      tracker_name: !string
+        default: ""
+      status_id: !string
+        default: ""
+      status_name: !string
+        default: ""
+      priority_id: !string
+        default: ""
+      priority_name: !string
+        default: ""
+      author_id: !string
+        default: ""
+      author_name: !string
+        default: ""
+      assigned_to_id: !string
+        default: ""
+      assigned_to_name: !string
+        default: ""
+      description: !string
+        default: ""
+      is_private: !string
+        default: ""
+      start_date: !string
+        default: ""
+      done_date: !string
+        default: ""
+      estimated_hours: !string
+        default: ""
+      created_on: !string
+        default: ""
+      updated_on: !string
+        default: ""
+      custom_text: !string
+        default: ""
+      last_notes: !string
+        default: ""
+      image_url_1: !string
+        default: "../default/blank.png"
+      image_url_2: !string
+        default: "../default/blank.png"
+      image_url_3: !string
+        default: "../default/blank.png"
+      image_url_4: !string
+        default: "../default/blank.png"
+      map: !map
+        maxDpi: 400
+        width: 555
+        height: 330
+    processors:
+    - !reportBuilder
+      directory: '.'
+    - !forwardHeaders
+      headers: [Referer, User-Agent]
+    - !createMap {}

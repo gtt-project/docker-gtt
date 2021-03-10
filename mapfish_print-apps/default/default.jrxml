@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e12e3a96-05b6-42d1-8416-df28439cf2b7">
+	<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="id" class="java.lang.String"/>
+	<parameter name="subject" class="java.lang.String"/>
+	<parameter name="project_id" class="java.lang.String"/>
+	<parameter name="project_name" class="java.lang.String"/>
+	<parameter name="tracker_id" class="java.lang.String"/>
+	<parameter name="tracker_name" class="java.lang.String"/>
+	<parameter name="status_id" class="java.lang.String"/>
+	<parameter name="status_name" class="java.lang.String"/>
+	<parameter name="priority_id" class="java.lang.String"/>
+	<parameter name="priority_name" class="java.lang.String"/>
+	<parameter name="author_id" class="java.lang.String"/>
+	<parameter name="author_name" class="java.lang.String"/>
+	<parameter name="assigned_to_id" class="java.lang.String"/>
+	<parameter name="assigned_to_name" class="java.lang.String"/>
+	<parameter name="description" class="java.lang.String"/>
+	<parameter name="is_private" class="java.lang.String"/>
+	<parameter name="start_date" class="java.lang.String"/>
+	<parameter name="done_date" class="java.lang.String"/>
+	<parameter name="estimated_hours" class="java.lang.String"/>
+	<parameter name="created_on" class="java.lang.String"/>
+	<parameter name="updated_on" class="java.lang.String"/>
+	<parameter name="custom_text" class="java.lang.String"/>
+	<parameter name="last_notes" class="java.lang.String"/>
+	<parameter name="image_url_1" class="java.lang.String"/>
+	<parameter name="image_url_2" class="java.lang.String"/>
+	<parameter name="image_url_3" class="java.lang.String"/>
+	<parameter name="image_url_4" class="java.lang.String"/>
+	<parameter name="mapSubReport" class="java.lang.String"/>
+	<title>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#187ECC" uuid="57b12e72-666c-476c-b42e-a7a625883b1d"/>
+				<textElement textAlignment="Center">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subject}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="740" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="330" uuid="d127bb1f-70b4-4fad-8ef0-ad03b14b6d6a">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportExpression><![CDATA[$P{mapSubReport}]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="340" width="100" height="15" uuid="dce586c4-310f-429f-8520-510016b5ca9d"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="340" width="175" height="15" uuid="b5a2802c-dca2-4939-a08a-9e094215f6cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="340" width="100" height="15" uuid="399f373b-bb72-495c-9614-cc28301fd54d"/>
+				<text><![CDATA[subject]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="340" width="175" height="15" uuid="10826ca7-185e-4760-ab43-ae7c34efadab"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subject}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="355" width="100" height="15" uuid="c717fe97-accc-4a0f-89d3-57c300fac211"/>
+				<text><![CDATA[project_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="355" width="175" height="15" uuid="f209b533-3fb2-40b9-b9fb-ea8edf3c64cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{project_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="355" width="100" height="15" uuid="2d667513-2938-42c2-a971-42164803db27"/>
+				<text><![CDATA[project_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="355" width="175" height="15" uuid="2b4a9b2e-64ce-4816-915a-bd34527e97d3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{project_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="370" width="100" height="15" uuid="30dda1e8-56d8-4036-a3a1-6db2c8d23559"/>
+				<text><![CDATA[tracker_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="370" width="175" height="15" uuid="722b6c24-29e7-4b6a-8f53-020bea686cd8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tracker_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="370" width="100" height="15" uuid="4559b622-77ff-41d5-97ef-22299443cc95"/>
+				<text><![CDATA[tracker_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="370" width="175" height="15" uuid="d080f9ab-9435-47d0-b3c2-5847ab5fa0a1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tracker_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="385" width="100" height="15" uuid="0973842a-e724-495d-bad3-bc05947cb113"/>
+				<text><![CDATA[status_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="385" width="175" height="15" uuid="e59d6205-0552-4d47-bc80-4c4a6ed1a458"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{status_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="385" width="100" height="15" uuid="fb120282-b1ce-4e21-a547-29c5df2fee35"/>
+				<text><![CDATA[status_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="385" width="175" height="15" uuid="921ebe21-fbd3-4fe8-96fb-ba0209675bb1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{status_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="400" width="100" height="15" uuid="8fe4c9ff-9cbd-42bb-8aad-927a83c8efec"/>
+				<text><![CDATA[priority_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="400" width="175" height="15" uuid="8b834bb4-b5fb-4221-ab5f-43859f149182"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{priority_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="400" width="100" height="15" uuid="a6352f01-3afb-49c0-b916-525daf80f561"/>
+				<text><![CDATA[priority_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="400" width="175" height="15" uuid="14031c68-d13e-4672-8c5d-273be32a52ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{priority_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="415" width="100" height="15" uuid="3d09d50b-cdc9-4646-aac2-f4ff1bd48289"/>
+				<text><![CDATA[author_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="415" width="175" height="15" uuid="5c18bdc1-4fa4-4442-b805-d5927b11ea67"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{author_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="415" width="100" height="15" uuid="1451237e-3a53-4a19-bedb-3aa0d67e3948"/>
+				<text><![CDATA[author_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="415" width="175" height="15" uuid="2b2120cf-b785-4b26-b4b4-05afc8de0d3a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{author_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="430" width="100" height="15" uuid="6180e135-7b7b-4c12-9cc2-6222c95ff180"/>
+				<text><![CDATA[assigned_to_id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="430" width="175" height="15" uuid="400273d9-43bb-4cf7-87ed-90c1c3003557"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assigned_to_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="430" width="100" height="15" uuid="40bdfcda-101d-4c1d-9370-9beb55312e0a"/>
+				<text><![CDATA[assigned_to_name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="430" width="175" height="15" uuid="ac7c4b98-ce9e-487d-9240-17f8de761aee"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{assigned_to_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="445" width="100" height="15" uuid="3a89d67b-8489-4db7-98c6-c0df53d26869"/>
+				<text><![CDATA[description]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="445" width="175" height="15" uuid="8612bb15-1446-42a4-afc4-de82764a96dd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="445" width="100" height="15" uuid="74f8a2c2-7479-4f0f-bc21-e90239bdafb4"/>
+				<text><![CDATA[is_private]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="445" width="175" height="15" uuid="13878a88-78c1-4d3e-918f-b82dd386af55"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{is_private}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="460" width="100" height="15" uuid="d60983bc-50d2-406d-8b12-189606020f61"/>
+				<text><![CDATA[start_date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="460" width="175" height="15" uuid="f5ddcf07-a53a-4ef5-bc77-5416241bc995"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{start_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="460" width="100" height="15" uuid="3dca7da4-52bf-448c-9818-dfeb6bd92141"/>
+				<text><![CDATA[done_date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="460" width="175" height="15" uuid="3c9b39db-9c74-40d0-872a-7e228bb1d2a3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{done_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="475" width="100" height="15" uuid="936c4455-f4bf-4175-9454-0ee5ae044210"/>
+				<text><![CDATA[estimated_hours]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="475" width="175" height="15" uuid="87bfd5bd-27ee-4400-a83a-800b2144f13d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{estimated_hours}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="475" width="100" height="15" uuid="af366745-9495-4cbf-9d4b-f62e6c1a369e"/>
+				<text><![CDATA[last_notes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="475" width="175" height="15" uuid="a23fc296-c016-4241-8c90-ae66de097ce3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{last_notes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="490" width="100" height="15" uuid="6d9ced89-18e8-449d-82af-384bfb702575"/>
+				<text><![CDATA[created_on]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="490" width="175" height="15" uuid="b2246a02-4c8f-4c23-96f6-11930f8c6415"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{created_on}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="490" width="100" height="15" uuid="8032dcb5-e076-4c06-9122-621e9f418aa6"/>
+				<text><![CDATA[updated_on]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="490" width="175" height="15" uuid="53fd194b-f8f9-48f2-a13b-2c7baa19e8b4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{updated_on}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="505" width="100" height="15" uuid="2eb55ac6-1cc9-42e6-b292-2976d9a8fb2f"/>
+				<text><![CDATA[custom_text]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="505" width="175" height="15" uuid="a317dea4-370a-4716-8163-f727dc549b15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{custom_text}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="531" width="100" height="15" uuid="4544144c-8874-408b-8ba6-15419005f0f2"/>
+				<text><![CDATA[image_url_1]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="531" width="455" height="15" uuid="31638632-840e-47f2-90a0-039ccac6bec0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{image_url_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="546" width="100" height="15" uuid="471c90c9-bcdd-48c6-a3e0-73460d034c6d"/>
+				<text><![CDATA[image_url_2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="546" width="455" height="15" uuid="009b27d1-cc2f-4daf-8498-127015863693"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{image_url_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="561" width="100" height="15" uuid="cf5e6e95-82e6-45ac-b047-e96516450b49"/>
+				<text><![CDATA[image_url_3]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="561" width="455" height="15" uuid="445539e6-27ab-4af8-be25-1f996fb1e6de"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{image_url_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="576" width="100" height="15" uuid="3115976f-73e3-4150-874b-bb1c2a0e9f60"/>
+				<text><![CDATA[image_url_4]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="576" width="455" height="15" uuid="0ee22670-4fa6-4814-82b8-82545a5cf141"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{image_url_4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="750" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="20" width="275" height="210" uuid="9402fdb2-5bc6-453a-bef8-de834330f524"/>
+				<imageExpression><![CDATA[$P{image_url_1}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="280" y="20" width="275" height="210" uuid="3812db09-8a8b-4f08-8839-6403e3b1a609"/>
+				<imageExpression><![CDATA[$P{image_url_2}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="230" width="275" height="210" uuid="c39e6d60-d0d6-4d7a-9d16-741f1085f231"/>
+				<imageExpression><![CDATA[$P{image_url_3}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="280" y="230" width="275" height="210" uuid="ac2ddb4c-91f0-4594-86ed-1da7ebf36441"/>
+				<imageExpression><![CDATA[$P{image_url_4}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>
