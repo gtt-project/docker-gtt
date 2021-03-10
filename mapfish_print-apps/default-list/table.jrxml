@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DJR_2141" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" scriptletClass="ar.com.fdvs.dj.core.DJDefaultScriptlet" whenResourceMissingType="Key" uuid="e034c6ef-7449-4a6a-9b5e-4ce04cc083b2">
+	<style name="dj_style_1_" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" radius="0" hTextAlign="Center" hImageAlign="Center" vTextAlign="Middle" vImageAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="14" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<box padding="2">
+			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="dj_style_2_" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" radius="0" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<box padding="2">
+			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="DejaVu Sans_for_column_DJR_2141_COLUMN_0_" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" radius="0" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<box padding="2">
+			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new java.lang.Boolean(((Number)$V{REPORT_COUNT}).doubleValue() % 2 == 0)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E6E6E6"/>
+		</conditionalStyle>
+	</style>
+	<style name="DejaVu Sans_for_column_DJR_2141_COLUMN_1_" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" radius="0" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<box padding="2">
+			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new java.lang.Boolean(((Number)$V{REPORT_COUNT}).doubleValue() % 2 == 0)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E6E6E6"/>
+		</conditionalStyle>
+	</style>
+	<style name="DejaVu Sans_for_column_DJR_2141_COLUMN_2_" mode="Transparent" forecolor="#000000" backcolor="#FFFFFF" radius="0" hTextAlign="Left" hImageAlign="Left" vTextAlign="Middle" vImageAlign="Middle" rotation="None" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded="false">
+		<box padding="2">
+			<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new java.lang.Boolean(((Number)$V{REPORT_COUNT}).doubleValue() % 2 == 0)]]></conditionExpression>
+			<style mode="Opaque" backcolor="#E6E6E6"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<parameter name="attribute_center_esting" class="java.lang.String"/>
+	<parameter name="attribute_scale" class="java.lang.String"/>
+	<parameter name="attribute_comment" class="java.lang.String"/>
+	<parameter name="attribute_title" class="java.lang.String"/>
+	<parameter name="attribute_srs" class="java.lang.String"/>
+	<parameter name="attribute_center_northing" class="java.lang.String"/>
+	<parameter name="attribute_rotation" class="java.lang.String"/>
+	<parameter name="map_main" class="java.awt.image.BufferedImage"/>
+	<parameter name="attribute_units" class="java.lang.String"/>
+	<field name="id" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="start_date" class="java.lang.String"/>
+	<field name="created_on" class="java.lang.String"/>
+	<field name="assigned_to_name" class="java.lang.String"/>
+	<field name="subject" class="java.lang.String"/>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement key="header_id" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="30" isPrintWhenDetailOverflows="true" uuid="c2c9d8b6-2fa2-4e7f-9382-ffdca719fad9"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="header_name" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="50" y="0" width="80" height="30" isPrintWhenDetailOverflows="true" uuid="6d5517a5-4bf0-4e4e-b40f-5f8cdfd8d4c8"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="header_icon" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="380" y="0" width="190" height="30" isPrintWhenDetailOverflows="true" uuid="ea9f360c-88ee-40ee-a383-2ce386ed4e6a"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="header_name" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="130" y="0" width="70" height="30" isPrintWhenDetailOverflows="true" uuid="b00ef8c5-d523-4988-8726-e45365534231"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[start_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="header_name" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="200" y="0" width="110" height="30" isPrintWhenDetailOverflows="true" uuid="73f9362d-ed65-457a-979a-37e2b9910f5d"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[created_on]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="header_name" style="dj_style_1_" positionType="Float" stretchType="RelativeToTallestObject" x="310" y="0" width="70" height="30" isPrintWhenDetailOverflows="true" uuid="55ae5104-22a5-4a9e-9c3d-44e68783c04e"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[assigned]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Immediate">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_0_" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="15" isPrintWhenDetailOverflows="true" uuid="9b56d8ed-049e-41dc-806e-350ad84a3842"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_1_" positionType="Float" stretchType="RelativeToTallestObject" x="50" y="0" width="80" height="15" isPrintWhenDetailOverflows="true" uuid="1e0ee0ef-22a5-43d5-b8d2-a731fc573055"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_2_" positionType="Float" stretchType="RelativeToTallestObject" x="380" y="0" width="190" height="15" isPrintWhenDetailOverflows="true" uuid="f0579b7e-28ae-4b28-a6ac-95ca1e3a3205"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_1_" positionType="Float" stretchType="RelativeToTallestObject" x="130" y="0" width="70" height="15" isPrintWhenDetailOverflows="true" uuid="7b49cf1c-bde6-4bbe-a229-a53f33c0fdb1"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{start_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_1_" positionType="Float" stretchType="RelativeToTallestObject" x="200" y="0" width="110" height="15" isPrintWhenDetailOverflows="true" uuid="93700713-d1d8-4bb7-87e9-922da035e63d"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{created_on}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="DejaVu Sans_for_column_DJR_2141_COLUMN_1_" positionType="Float" stretchType="RelativeToTallestObject" x="310" y="0" width="70" height="15" isPrintWhenDetailOverflows="true" uuid="8a9a9789-9a37-4ea6-be6d-630029f9524a"/>
+				<textElement>
+					<font fontName="IPAex Gothic" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assigned_to_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -7,3 +7,6 @@
 [submodule "plugins/redmine_gtt_smash"]
 	path = plugins/redmine_gtt_smash
 	url = https://github.com/gtt-project/redmine_gtt_smash.git
+[submodule "plugins/redmine_gtt_print"]
+	path = plugins/redmine_gtt_print
+	url = https://github.com/gtt-project/redmine_gtt_print.git
