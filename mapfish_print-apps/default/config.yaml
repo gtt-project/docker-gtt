@@ -56,10 +56,6 @@ templates:
         default: ""
       last_notes: !string
         default: ""
-      supply_items: !string
-        default: ""
-      resource_items: !string
-        default: ""
       image_url_1: !string
         default: "../default/blank.png"
       image_url_2: !string

@@ -32,8 +32,6 @@
 	<parameter name="image_url_3" class="java.lang.String"/>
 	<parameter name="image_url_4" class="java.lang.String"/>
 	<parameter name="mapSubReport" class="java.lang.String"/>
-	<parameter name="supply_items" class="java.lang.String"/>
-	<parameter name="resource_items" class="java.lang.String"/>
 	<title>
 		<band height="50" splitType="Stretch">
 			<textField>
