@@ -8,6 +8,7 @@ After cloning this repository run:
 
 ```
 git submodule update --init
+cp .env.example .env
 docker-compose up --build
 ```
 

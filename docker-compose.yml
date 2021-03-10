@@ -9,7 +9,7 @@ services:
       args:
         REDMINE_VERSION: ""
         REDMICA_VERSION: 1.2.0
-        GEM_PG_VERSION: 1.2.2
+        GEM_PG_VERSION: ${GEM_PG_VERSION}
         PATCH_STRIP: 1
         PATCH_DIRS: "33290"
     ports:
@@ -20,7 +20,16 @@ services:
       REDMINE_DB_PASSWORD: gtt
       REDMINE_DB_DATABASE: gtt
       REDMINE_PLUGINS_MIGRATE: 1
-      GEM_PG_VERSION: 1.2.2
+      # Gemfile
+      GEM_PG_VERSION: ${GEM_PG_VERSION}
+      # config/configuration.yml
+      SMTP_ENABLE_STARTTLS_AUTO: ${SMTP_ENABLE_STARTTLS_AUTO}
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
+      SMTP_USER_NAME: ${SMTP_USER_NAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
     volumes:
       - ./files:/usr/src/redmine/files
       - ./plugins:/usr/src/redmine/plugins
