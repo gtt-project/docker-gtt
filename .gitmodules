@@ -14,3 +14,6 @@
 	path = public/themes/hyakumori_blueclair
 	url = https://github.com/hyakumori/redmine_theme_farend_bleuclair.git
 	branch = hyakumori
+[submodule "plugins/redmine_gtt_print"]
+	path = plugins/redmine_gtt_print
+	url = https://github.com/gtt-project/redmine_gtt_print.git

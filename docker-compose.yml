@@ -27,6 +27,7 @@ services:
       - ./public/themes:/usr/src/redmine/public/themes
     depends_on:
       - postgres
+      - mapfish-print
     restart: always
 
   postgres:
@@ -39,6 +40,17 @@ services:
       - postgres:/var/lib/postgresql/data
     restart: always
 
+  mapfish-print:
+    image: camptocamp/mapfish_print:3.27
+    ports:
+      - 8080:8080
+    environment:
+      EXTRA_JARS: /usr/local/tomcat/webapps/ROOT/print-apps/lib
+    volumes:
+      - ./mapfish_print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
+    restart: always
+
 volumes:
   gtt:
   postgres:
+  mapfish-print:
