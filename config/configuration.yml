@@ -1,0 +1,35 @@
+# = Redmine configuration file
+#
+# Each environment has its own configuration options.  If you are only
+# running in production, only the production block needs to be configured.
+# Environment specific configuration options override the default ones.
+#
+# Note that this file needs to be a valid YAML file.
+# DO NOT USE TABS! Use 2 spaces instead of tabs for indentation.
+
+# default configuration options for all environments
+default:
+  # Outgoing emails configuration
+  # See the examples below and the Rails guide for more configuration options:
+  # http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
+  #  email_delivery:
+
+  # ==== SMTP server at using TLS (GMail)
+  # This might require some additional configuration. See the guides at:
+  # http://www.redmine.org/projects/redmine/wiki/EmailConfiguration
+  #
+  email_delivery:
+    delivery_method: :smtp
+    smtp_settings:
+      enable_starttls_auto: <%= ENV['SMTP_ENABLE_STARTTLS_AUTO'] %>
+      address: <%= ENV['SMTP_ADDRESS'] %>
+      port: <%= ENV['SMTP_PORT'] %>
+      domain: <%= ENV['SMTP_DOMAIN'] %>
+      authentication: <%= ENV['SMTP_AUTHENTICATION'] %>
+      user_name: <%= ENV['SMTP_USER_NAME'] %>
+      password: <%= ENV['SMTP_PASSWORD'] %>
+ 
+  # ==== Sendmail command
+  #
+  #  email_delivery:
+  #    delivery_method: :sendmail
