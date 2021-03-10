@@ -164,6 +164,7 @@ RUN set -eux; \
 	; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 
+COPY config/ ./config/
 VOLUME /usr/src/redmine/files
 
 COPY docker-entrypoint.sh /
