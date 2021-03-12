@@ -1,0 +1,27 @@
+production:
+  access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+  bucket: <%= ENV['S3_BUCKET'] %>
+  folder: <%= ENV['S3_FOLDER'] %>
+  endpoint: <%= ENV['S3_ENDPOINT'] %>
+  thumb_folder: <%= ENV['S3_THUMB_FOLDER'] %>
+  import_folder: <%= ENV['S3_IMPORT_FOLDER'] %>
+  region: <%= ENV['S3_REGION'] %>
+  force_path_style: <%= ENV['S3_FORCE_PATH_STYLE'] %>
+
+development:
+  access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] %>
+  bucket: <%= ENV['S3_BUCKET'] %>
+  folder: <%= ENV['S3_FOLDER'] %>
+  endpoint: <%= ENV['S3_ENDPOINT'] %>
+  thumb_folder: <%= ENV['S3_THUMB_FOLDER'] %>
+  import_folder: <%= ENV['S3_IMPORT_FOLDER'] %>
+  region: <%= ENV['S3_REGION'] %>
+  force_path_style: <%= ENV['S3_FORCE_PATH_STYLE'] %>
+
+# Uncomment this to run plugin tests with standart redmine script
+# test:
+#   access_key_id:
+#   secret_access_key:
+#   bucket:

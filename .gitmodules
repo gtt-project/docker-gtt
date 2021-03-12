@@ -17,3 +17,6 @@
 [submodule "plugins/redmine_gtt_print"]
 	path = plugins/redmine_gtt_print
 	url = https://github.com/gtt-project/redmine_gtt_print.git
+[submodule "plugins/redmica_s3"]
+	path = plugins/redmica_s3
+	url = https://github.com/gtt-project/redmica_s3.git
