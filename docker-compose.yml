@@ -56,7 +56,7 @@ services:
     environment:
       EXTRA_JARS: /usr/local/tomcat/webapps/ROOT/print-apps/lib
     volumes:
-      - ./mapfish_print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
+      - ./mapfish-print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
     restart: always
 
 volumes:
