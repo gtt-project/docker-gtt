@@ -1,9 +1,18 @@
 # Volume mounts
 files
 
+# Config files
+.env
+
+# MapFish Print
+mapfish-print-apps/**/
+
 # Editor
 *.code-workspace
 .idea/
+
+# Python venv
+venv
 
 # macOS
 .DS_Store
