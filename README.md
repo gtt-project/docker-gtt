@@ -1,6 +1,19 @@
-# docker-gtt
+# Hyakumori Dockerized GTT
 
-Docker image for GTT Project
+Docker image and docker-compose file for the Hyakumori GTT Project
+
+This will launch Redmine with the following plugins:
+
+* redmine_text_blocks
+* redmine_gtt
+* redmine_gtt_smash
+* redmine_theme_farend_bleuclair
+* redmine_gtt_print
+* redmica_s3
+
+## Requirements
+
+- docker-compose
 
 ## Quick start
 
