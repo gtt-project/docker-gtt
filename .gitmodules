@@ -17,3 +17,6 @@
 [submodule "plugins/redmica_s3"]
 	path = plugins/redmica_s3
 	url = https://github.com/gtt-project/redmica_s3.git
+[submodule "docker-backup"]
+	path = docker-backup
+	url = git@github.com:hyakumori/docker-backup.git
