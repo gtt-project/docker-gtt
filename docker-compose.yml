@@ -16,9 +16,9 @@ services:
       - 3000:3000
     environment:
       REDMINE_DB_POSTGRES: postgres
-      REDMINE_DB_USERNAME: gtt
-      REDMINE_DB_PASSWORD: gtt
-      REDMINE_DB_DATABASE: gtt
+      REDMINE_DB_USERNAME: ${POSTGRES_USER}
+      REDMINE_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      REDMINE_DB_DATABASE: ${POSTGRES_DB}
       REDMINE_PLUGINS_MIGRATE: 1
       # Gemfile
       GEM_PG_VERSION: ${GEM_PG_VERSION}
@@ -42,9 +42,9 @@ services:
   postgres:
     image: postgis/postgis:latest
     environment:
-      POSTGRES_USER: gtt
-      POSTGRES_PASSWORD: gtt
-      POSTGRES_DB: gtt
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres:/var/lib/postgresql/data
     restart: always
