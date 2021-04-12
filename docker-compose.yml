@@ -7,8 +7,8 @@ services:
       context: ./
       dockerfile: ./Dockerfile
       args:
-        REDMINE_VERSION: ""
-        REDMICA_VERSION: 1.2.1
+        REDMINE_VERSION: 4.2.0
+        REDMICA_VERSION: ""
         GEM_PG_VERSION: ${GEM_PG_VERSION}
         PATCH_STRIP: 1
         PATCH_DIRS: ""
