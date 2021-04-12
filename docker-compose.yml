@@ -8,10 +8,10 @@ services:
       dockerfile: ./Dockerfile
       args:
         REDMINE_VERSION: ""
-        REDMICA_VERSION: 1.2.0
+        REDMICA_VERSION: 1.2.1
         GEM_PG_VERSION: ${GEM_PG_VERSION}
         PATCH_STRIP: 1
-        PATCH_DIRS: "33290"
+        PATCH_DIRS: ""
     ports:
       - 3000:3000
     environment:
