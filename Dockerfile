@@ -1,4 +1,4 @@
-FROM ruby:2.6-slim-buster
+FROM ruby:2.7-slim-buster
 
 # explicitly set uid/gid to guarantee that it won't change in the future
 # the values 999:999 are identical to the current user/group id assigned
@@ -21,53 +21,16 @@ RUN set -eux; \
 		ghostscript \
 		gsfonts \
 		imagemagick \
-		\
 # https://github.com/docker-library/ruby/issues/344
 		shared-mime-info \
-	; \
-	rm -rf /var/lib/apt/lists/*
-
-RUN set -eux; \
-	savedAptMark="$(apt-mark showmanual)"; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		dirmngr \
-		gnupg \
-	; \
-	rm -rf /var/lib/apt/lists/*; \
-	\
-	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
-	\
 # grab gosu for easy step-down from root
-# https://github.com/tianon/gosu/releases
-	export GOSU_VERSION='1.12'; \
-	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
-	gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
-	gpgconf --kill all; \
-	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
-	chmod +x /usr/local/bin/gosu; \
-	gosu nobody true; \
-	\
+		gosu \
 # grab tini for signal processing and zombie killing
-# https://github.com/krallin/tini/releases
-	export TINI_VERSION='0.19.0'; \
-	wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/v$TINI_VERSION/tini-$dpkgArch"; \
-	wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/v$TINI_VERSION/tini-$dpkgArch.asc"; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5; \
-	gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini; \
-	gpgconf --kill all; \
-	rm -r "$GNUPGHOME" /usr/local/bin/tini.asc; \
-	chmod +x /usr/local/bin/tini; \
-	tini -h; \
-	\
-# reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
-	apt-mark auto '.*' > /dev/null; \
-	[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; \
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
+		tini \
+	; \
+# allow imagemagick to use ghostscript for PDF -> PNG thumbnail conversion (4.1+)
+	sed -ri 's/(rights)="none" (pattern="PDF")/\1="read" \2/' /etc/ImageMagick-6/policy.xml; \
+	rm -rf /var/lib/apt/lists/*
 
 ENV RAILS_ENV production
 WORKDIR /usr/src/redmine
@@ -81,14 +44,14 @@ RUN set -eux; \
 	chown redmine:redmine "$HOME"; \
 	chmod 1777 "$HOME"
 
-ARG REDMINE_VERSION="4.0.7"
+ARG REDMINE_VERSION="4.2.1"
 ARG REDMICA_VERSION=""
-# ENV REDMINE_DOWNLOAD_MD5 baad690fdccd7f0282d53beb0ee2c47b
+# ENV REDMINE_DOWNLOAD_SHA256 ad4109c3425f1cfe4c8961f6ae6494c76e20d81ed946caa1e297d9eda13b41b4
 
 RUN set -eux; \
 	if [ -n "$REDMINE_VERSION" ]; then \
 		wget -O redmine.tar.gz "https://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz"; \
-		# echo "$REDMINE_DOWNLOAD_MD5 *redmine.tar.gz" | md5sum -c -;
+		# echo "$REDMINE_DOWNLOAD_SHA256 *redmine.tar.gz" | sha256sum -c -;
 	elif [ -n "$REDMICA_VERSION" ]; then \
 		wget -O redmine.tar.gz "https://github.com/redmica/redmica/archive/v${REDMICA_VERSION}.tar.gz"; \
 	fi; \
@@ -140,14 +103,16 @@ RUN set -eux; \
 		rm -rf ./patches/*; \
 	fi; \
 	export GEM_PG_VERSION="$GEM_PG_VERSION"; \
-	gosu redmine bundle install --jobs "$(nproc)" --without development test; \
+	gosu redmine bundle config --local without 'development test'; \
+# fill up "database.yml" with bogus entries so the redmine Gemfile will pre-install all database adapter dependencies
+# https://github.com/redmine/redmine/blob/e9f9767089a4e3efbd73c35fc55c5c7eb85dd7d3/Gemfile#L50-L79
+	echo '# the following entries only exist to force `bundle install` to pre-install all database adapter dependencies -- they can be safely removed/ignored' > ./config/database.yml; \
 	# for adapter in mysql2 postgresql sqlserver sqlite3; do \
 	for adapter in postgis; do \
-		echo "$RAILS_ENV:" > ./config/database.yml; \
+		echo "$adapter:" >> ./config/database.yml; \
 		echo "  adapter: $adapter" >> ./config/database.yml; \
-		gosu redmine bundle install --jobs "$(nproc)" --without development test; \
-		cp Gemfile.lock "Gemfile.lock.${adapter}"; \
 	done; \
+	gosu redmine bundle install --jobs "$(nproc)"; \
 	rm ./config/database.yml; \
 # fix permissions for running as an arbitrary user
 	chmod -R ugo=rwX Gemfile.lock "$GEM_HOME"; \
