@@ -112,7 +112,7 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends yarn; \
 	for plugin in ./plugins/*; do \
 		if [ -f "$plugin/webpack.config.js" ]; then \
-			cd "$plugin" && yarn && npx webpack && cd ../..; \
+			cd "$plugin" && yarn && npx webpack && rm -rf node_modules && cd ../..; \
 		fi; \
 	done; \
 	export GEM_PG_VERSION="$GEM_PG_VERSION"; \
