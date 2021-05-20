@@ -73,6 +73,7 @@ COPY patches/ ./patches/
 # for GTT gem native extensions
 ARG GEM_PG_VERSION="1.1.4"
 COPY Gemfile.local ./
+COPY plugins/ ./plugins/
 
 RUN set -eux; \
 	\
@@ -91,6 +92,7 @@ RUN set -eux; \
 # for GTT dependencies
 		g++ \
 		libgeos-dev \
+		curl \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
@@ -102,6 +104,17 @@ RUN set -eux; \
 		done; \
 		rm -rf ./patches/*; \
 	fi; \
+	curl -sL https://deb.nodesource.com/setup_14.x | bash -; \
+	apt-get install -y --no-install-recommends nodejs; \
+	curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -; \
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends yarn; \
+	for plugin in ./plugins/*; do \
+		if [ -f "$plugin/webpack.config.js" ]; then \
+			cd "$plugin" && yarn && npx webpack && cd ../..; \
+		fi; \
+	done; \
 	export GEM_PG_VERSION="$GEM_PG_VERSION"; \
 	gosu redmine bundle config --local without 'development test'; \
 # fill up "database.yml" with bogus entries so the redmine Gemfile will pre-install all database adapter dependencies
