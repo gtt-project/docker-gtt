@@ -2,12 +2,25 @@
 
 Docker image for GTT Project
 
+## Requirements
+
+- Docker
+- docker-compose
+- NodeJS v14
+- yarn
+
 ## Quick start
 
 After cloning this repository run:
 
 ```
 git submodule update --init
+
+cd plugins/redmine_gtt
+yarn
+npx webpack
+cd ../../
+
 cp .env.example .env
 docker-compose up --build
 ```
