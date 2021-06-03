@@ -118,6 +118,7 @@ if [ -n "$isLikelyRedmine" ]; then
 			username \
 			password \
 			database \
+			schema_search_path \
 			encoding \
 		; do
 			env="REDMINE_DB_${var^^}"
