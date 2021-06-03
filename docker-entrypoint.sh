@@ -65,6 +65,7 @@ if [ -n "$isLikelyRedmine" ]; then
 			file_env 'REDMINE_DB_USERNAME' "${MYSQL_ENV_MYSQL_USER:-root}"
 			file_env 'REDMINE_DB_PASSWORD' "${MYSQL_ENV_MYSQL_PASSWORD:-${MYSQL_ENV_MYSQL_ROOT_PASSWORD:-}}"
 			file_env 'REDMINE_DB_DATABASE' "${MYSQL_ENV_MYSQL_DATABASE:-${MYSQL_ENV_MYSQL_USER:-redmine}}"
+			file_env 'REDMINE_DB_SCHEMA_SEARCH_PATH' ''
 			file_env 'REDMINE_DB_ENCODING' ''
 		elif [ "$REDMINE_DB_POSTGRES" ]; then
 			# adapter='postgresql'
@@ -74,6 +75,7 @@ if [ -n "$isLikelyRedmine" ]; then
 			file_env 'REDMINE_DB_USERNAME' "${POSTGRES_ENV_POSTGRES_USER:-postgres}"
 			file_env 'REDMINE_DB_PASSWORD' "${POSTGRES_ENV_POSTGRES_PASSWORD}"
 			file_env 'REDMINE_DB_DATABASE' "${POSTGRES_ENV_POSTGRES_DB:-${REDMINE_DB_USERNAME:-}}"
+			file_env 'REDMINE_DB_SCHEMA_SEARCH_PATH' "${POSTGRES_ENV_POSTGRES_SCHEMA_SEARCH_PATH:-public}"
 			file_env 'REDMINE_DB_ENCODING' 'utf8'
 		elif [ "$REDMINE_DB_SQLSERVER" ]; then
 			adapter='sqlserver'
@@ -82,6 +84,7 @@ if [ -n "$isLikelyRedmine" ]; then
 			file_env 'REDMINE_DB_USERNAME' ''
 			file_env 'REDMINE_DB_PASSWORD' ''
 			file_env 'REDMINE_DB_DATABASE' ''
+			file_env 'REDMINE_DB_SCHEMA_SEARCH_PATH' ''
 			file_env 'REDMINE_DB_ENCODING' ''
 		else
 			echo >&2
@@ -96,6 +99,7 @@ if [ -n "$isLikelyRedmine" ]; then
 			file_env 'REDMINE_DB_USERNAME' 'redmine'
 			file_env 'REDMINE_DB_PASSWORD' ''
 			file_env 'REDMINE_DB_DATABASE' 'sqlite/redmine.db'
+			file_env 'REDMINE_DB_SCHEMA_SEARCH_PATH' ''
 			file_env 'REDMINE_DB_ENCODING' 'utf8'
 
 			mkdir -p "$(dirname "$REDMINE_DB_DATABASE")"
