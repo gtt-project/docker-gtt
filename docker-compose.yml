@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
       args:
-        REDMINE_VERSION: 4.2.0
+        REDMINE_VERSION: 4.2.2
         REDMICA_VERSION: ""
         GEM_PG_VERSION: ${GEM_PG_VERSION}
         PATCH_STRIP: 1
@@ -44,13 +44,16 @@ services:
       - ./files:/usr/src/redmine/files
       - ./plugins:/usr/src/redmine/plugins
       - ./public/themes:/usr/src/redmine/public/themes
+      # Exclude node package and webpack contents folders
+      - /usr/src/redmine/plugins/redmine_gtt/node_modules
+      - /usr/src/redmine/plugins/redmine_gtt/assets/javascripts
     depends_on:
       - postgres
       - mapfish-print
     restart: always
 
   postgres:
-    image: postgis/postgis:latest
+    image: postgis/postgis:13-3.1
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
