@@ -1,0 +1,6 @@
+.DS_Store
+
+# plugins/redmine_gtt
+plugins/redmine_gtt/node_modules
+plugins/redmine_gtt/assets/javascripts
+
