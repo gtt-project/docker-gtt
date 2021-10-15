@@ -1,4 +1,4 @@
-FROM ruby:2.6-slim-buster
+FROM ruby:2.7-slim-buster
 
 # explicitly set uid/gid to guarantee that it won't change in the future
 # the values 999:999 are identical to the current user/group id assigned
@@ -44,7 +44,7 @@ RUN set -eux; \
 	chown redmine:redmine "$HOME"; \
 	chmod 1777 "$HOME"
 
-ARG REDMINE_VERSION="4.2.1"
+ARG REDMINE_VERSION="4.2.3"
 ARG REDMICA_VERSION=""
 # ENV REDMINE_DOWNLOAD_SHA256 ad4109c3425f1cfe4c8961f6ae6494c76e20d81ed946caa1e297d9eda13b41b4
 
@@ -71,7 +71,7 @@ ARG PATCH_DIRS=""
 COPY patches/ ./patches/
 
 # for GTT gem native extensions
-ARG GEM_PG_VERSION="1.1.4"
+ARG GEM_PG_VERSION="1.2.3"
 COPY Gemfile.local ./
 COPY plugins/ ./plugins/
 
