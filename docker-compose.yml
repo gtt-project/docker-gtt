@@ -1,68 +1,28 @@
 version: "3"
 
 services:
+  postgis:
+    image: postgis/postgis:14-3.2
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgis:/var/lib/postgresql/data
 
-  gtt:
+  redmine:
     build:
-      context: ./
-      dockerfile: ./Dockerfile
-      args:
-        REDMINE_VERSION: 4.2.3
-        REDMICA_VERSION: ""
-        GEM_PG_VERSION: ${GEM_PG_VERSION}
-        PATCH_STRIP: 1
-        PATCH_DIRS: ""
+      context: .
     ports:
       - 3000:3000
-    environment:
-      REDMINE_DB_POSTGRES: postgres
-      REDMINE_DB_USERNAME: ${POSTGRES_USER}
-      REDMINE_DB_PASSWORD: ${POSTGRES_PASSWORD}
-      REDMINE_DB_DATABASE: ${POSTGRES_DB}
-      REDMINE_PLUGINS_MIGRATE: 1
-      # Gemfile
-      GEM_PG_VERSION: ${GEM_PG_VERSION}
-      # config/configuration.yml
-      SMTP_ENABLE_STARTTLS_AUTO: ${SMTP_ENABLE_STARTTLS_AUTO}
-      SMTP_ADDRESS: ${SMTP_ADDRESS}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_DOMAIN: ${SMTP_DOMAIN}
-      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
-      SMTP_USER_NAME: ${SMTP_USER_NAME}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    env_file:
+      - .env
     volumes:
       - ./files:/usr/src/redmine/files
       - ./plugins:/usr/src/redmine/plugins
       - ./public/themes:/usr/src/redmine/public/themes
-      # Exclude node package and webpack contents folders
-      - /usr/src/redmine/plugins/redmine_gtt/node_modules
-      - /usr/src/redmine/plugins/redmine_gtt/assets/javascripts
     depends_on:
-      - postgres
-      - mapfish-print
-    restart: always
-
-  postgres:
-    image: postgis/postgis:13-3.1
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    restart: always
-
-  mapfish-print:
-    image: camptocamp/mapfish_print:3.28
-    ports:
-      - 8080:8080
-    environment:
-      EXTRA_JARS: /usr/local/tomcat/webapps/ROOT/print-apps/lib
-    volumes:
-      - ./mapfish-print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
-    restart: always
+      - postgis
 
 volumes:
-  gtt:
-  postgres:
-  mapfish-print:
+  postgis:
