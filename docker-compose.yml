@@ -9,6 +9,12 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - postgis:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready -U ${DB_USER} -d ${DB_NAME} && psql -U ${DB_USER} -d ${DB_NAME} -c \"\\dx\" | grep postgis_tiger_geocoder"
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 10s
 
   redmine:
     build:
@@ -22,7 +28,8 @@ services:
       - ./plugins:/usr/src/redmine/plugins
       - ./public/themes:/usr/src/redmine/public/themes
     depends_on:
-      - postgis
+      postgis:
+        condition: service_healthy
 
 volumes:
   postgis:
