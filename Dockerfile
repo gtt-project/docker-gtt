@@ -28,17 +28,17 @@ RUN set -eux; \
 		ca-certificates \
 		wget \
 		\
-    # we need "gsfonts" for generating PNGs of Gantt charts
-    # and "ghostscript" for creating PDF thumbnails (in 4.1+)
+# we need "gsfonts" for generating PNGs of Gantt charts
+# and "ghostscript" for creating PDF thumbnails (in 4.1+)
 		ghostscript \
 		gsfonts \
 		imagemagick \
-    # grab gosu for easy step-down from root
+# grab gosu for easy step-down from root
 		gosu \
-    # grab tini for signal processing and zombie killing
+# grab tini for signal processing and zombie killing
 		tini \
 	; \
-  # allow imagemagick to use ghostscript for PDF -> PNG thumbnail conversion (4.1+)
+# allow imagemagick to use ghostscript for PDF -> PNG thumbnail conversion (4.1+)
 	sed -ri 's/(rights)="none" (pattern="PDF")/\1="read" \2/' /etc/ImageMagick-6/policy.xml; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -53,10 +53,6 @@ RUN set -eux; \
 	mkdir -p "$HOME"; \
 	chown redmine:redmine "$HOME"; \
 	chmod 1777 "$HOME"
-
-# To support Redmine 5.0
-ENV GEM_RGEO_ACTIVERECORD_VERSION=7.0.1
-ENV GEM_ACTIVERECORD_POSTGIS_ADAPTER_VERSION=7.1.1
 
 # Defined in docker-compose.yml
 ARG REDMINE_VERSION
@@ -84,7 +80,6 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		freetds-dev \
 		gcc \
 		libpq-dev \
 		libgeos-dev \
@@ -95,11 +90,11 @@ RUN set -eux; \
 	\
 	gosu redmine bundle config --local without 'development test'; \
 	gosu redmine bundle install --jobs "$(nproc)"; \
-  # fix permissions for running as an arbitrary user
+# fix permissions for running as an arbitrary user
 	chmod -R ugo=rwX Gemfile.lock "$GEM_HOME"; \
 	rm -rf ~redmine/.bundle; \
 	\
-  # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
+# reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 	apt-mark auto '.*' > /dev/null; \
 	[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; \
 	find /usr/local -type f -executable -exec ldd '{}' ';' \
