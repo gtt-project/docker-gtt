@@ -32,6 +32,10 @@ services:
       - ./files:/usr/src/redmine/files
       - ./plugins:/usr/src/redmine/plugins
       - ./public/themes:/usr/src/redmine/public/themes
+      # Exclude node package and webpack contents folders
+      # Needed to build with webpack!
+      - /usr/src/redmine/plugins/redmine_gtt/node_modules
+      - /usr/src/redmine/plugins/redmine_gtt/assets/javascripts
       # TODO: remove the following line when adding GTT Print back
       - /usr/src/redmine/plugins/redmine_gtt_print
     depends_on:
