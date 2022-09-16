@@ -2,10 +2,10 @@
 
 if [[ -v REDMINE_LANG ]];
 then
-echo "REDMINE_LANG is already set: ${REDMINE_LANG}"
+  echo "REDMINE_LANG is already set: ${REDMINE_LANG}"
 else
-echo "Set REDMINE_LANG variable to: en"
-export REDMINE_LANG="en"
+  echo "Set REDMINE_LANG variable to: en"
+  export REDMINE_LANG="en"
 fi
 
 bundle exec rake generate_secret_token
