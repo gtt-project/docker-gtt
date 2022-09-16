@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgis
+  database: <%= ENV['DB_NAME'] %>
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  port: <%= ENV['DB_PORT'] || 5432 %>
+  encoding: utf8
+
+production:
+  <<: *default
+
+test:
+  <<: *default
+
+development:
+  <<: *default

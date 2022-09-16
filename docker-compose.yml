@@ -2,67 +2,63 @@ version: "3"
 
 services:
 
-  gtt:
+  postgis:
+    image: postgis/postgis:14-master
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgis:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}", "-d", "${DB_NAME}", "-h", "postgis"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 10s
+
+  redmine:
     build:
-      context: ./
+      context: .
       dockerfile: ./Dockerfile
       args:
-        REDMINE_VERSION: 4.2.3
-        REDMICA_VERSION: ""
-        GEM_PG_VERSION: ${GEM_PG_VERSION}
-        PATCH_STRIP: 1
-        PATCH_DIRS: ""
+        REDMINE_VERSION: 5.0.2
+        REDMINE_DOWNLOAD_SHA256: "4e718f44ba33716faf58c8fabf5d5f55b33c93426b7a33a83b5fc1b880585d57"
     ports:
       - 3000:3000
-    environment:
-      REDMINE_DB_POSTGRES: postgres
-      REDMINE_DB_USERNAME: ${POSTGRES_USER}
-      REDMINE_DB_PASSWORD: ${POSTGRES_PASSWORD}
-      REDMINE_DB_DATABASE: ${POSTGRES_DB}
-      REDMINE_PLUGINS_MIGRATE: 1
-      # Gemfile
-      GEM_PG_VERSION: ${GEM_PG_VERSION}
-      # config/configuration.yml
-      SMTP_ENABLE_STARTTLS_AUTO: ${SMTP_ENABLE_STARTTLS_AUTO}
-      SMTP_ADDRESS: ${SMTP_ADDRESS}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_DOMAIN: ${SMTP_DOMAIN}
-      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION}
-      SMTP_USER_NAME: ${SMTP_USER_NAME}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    env_file:
+      - .env
     volumes:
       - ./files:/usr/src/redmine/files
       - ./plugins:/usr/src/redmine/plugins
       - ./public/themes:/usr/src/redmine/public/themes
       # Exclude node package and webpack contents folders
+      # Needed to build with webpack!
       - /usr/src/redmine/plugins/redmine_gtt/node_modules
       - /usr/src/redmine/plugins/redmine_gtt/assets/javascripts
+      # TODO: remove the following line when adding GTT Print back
+      - /usr/src/redmine/plugins/redmine_gtt_print
     depends_on:
-      - postgres
-      - mapfish-print
-    restart: always
+      postgis:
+        condition: service_healthy
+      # mapfish:
+      #   condition: service_started
 
-  postgres:
-    image: postgis/postgis:13-3.1
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    restart: always
+  # mapfish:
+  #   image: camptocamp/mapfish_print:3.29
+  #   ports:
+  #     - 8080:8080
+  #   environment:
+  #     EXTRA_JARS: /usr/local/tomcat/webapps/ROOT/print-apps/lib
+  #     # CATALINA_OPTS: ""
+  #   volumes:
+  #     - ./plugins/redmine_gtt_print/server-example/print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
 
-  mapfish-print:
-    image: camptocamp/mapfish_print:3.28
+  smtp:
+    image: smellman/mailcatcher:0.8.2
     ports:
-      - 8080:8080
-    environment:
-      EXTRA_JARS: /usr/local/tomcat/webapps/ROOT/print-apps/lib
-    volumes:
-      - ./mapfish-print-apps:/usr/local/tomcat/webapps/ROOT/print-apps
-    restart: always
+      - 1080:1080
 
 volumes:
-  gtt:
-  postgres:
-  mapfish-print:
+  postgis:
+  # mapfish:
