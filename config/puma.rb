@@ -1,4 +1,4 @@
-workers 3
+workers (ENV['PUMA_WORKERS'] || 3).to_i
 
 before_fork do
   require 'puma_worker_killer'
